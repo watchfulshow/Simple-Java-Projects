@@ -18,7 +18,8 @@ ask user for input
 get user input (5 letter word) 
 check if user did put a 5 letter word 
 
-
+compare if the letters of the user input word is equal to the word that-
+was chosen 
 
 
 
