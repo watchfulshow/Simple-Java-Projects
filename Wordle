@@ -13,13 +13,23 @@ choose a random word from the array list
 
 tell the user about the application (Wordle)
 tell user current number of words in array 
-ask user for input
 
-get user input (5 letter word) 
-check if user did put a 5 letter word 
+repeat 5 times
+  ask user for input
 
-compare if the letters of the user input word is equal to the word that-
-was chosen 
+  get user input (5 letter word) 
+  check if user did put a 5 letter word 
+
+
+  compare if the letters of the user input word is equal to the word that-
+  was chosen
+
+  display which color each one is based on (X - no, Y - yellow, G - green) 
+  
+  if all are equal
+  print poggers
+
+
 
 
 
