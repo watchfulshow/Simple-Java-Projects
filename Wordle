@@ -1,0 +1,24 @@
+
+
+create the the list to store the words from the file (5letterwords.txt) 
+make a reader to read the words in the file 
+
+store words in file 
+
+convert the arraylist into a normal array 
+
+choose a random word from the array list
+
+
+
+tell the user about the application (Wordle)
+tell user current number of words in array 
+ask user for input
+
+get user input (5 letter word) 
+check if user did put a 5 letter word 
+
+
+
+
+
