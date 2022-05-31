@@ -28,6 +28,12 @@ repeat 5 times
   
   if all are equal
   print poggers
+  
+stipulations for comparing chars 
+- if exact same
+- if letter is in word
+- if letter is in right place
+- if letter is not in word
 
 
 
