@@ -1,41 +1,86 @@
+import java.util.*; 
+import java.io.*; 
+public class Wordle_iterate {
+	
+	public static void main(String[] args) throws IOException {
+		
+		List<String> listofWords = new ArrayList<String>(); 
+		// list to add words
+		BufferedReader reader = new BufferedReader(new FileReader("F:\\UT Austin Junior Year\\Java-Random\\gui_rock_paper_scissors\\src\\5letterwords.txt"));
+		// Read/load data from file
+		String readLine = reader.readLine(); 
+		// will read entire line as string
+		while (readLine != null) {
+			listofWords.add(readLine); 
+			readLine = reader.readLine(); 
+		}
+		// checks for end of file and adds to arraylist
+		reader.close(); 
+		// terminate reader
+		String[] arrayForWords = listofWords.toArray(new String[0]);
+		// covert arraylist to array
+		Random random = new Random(); 
+	    int num = random.nextInt(arrayForWords.length);
+	    String actualWord = arrayForWords[num]; 
+	    char[] arrayForChars = actualWord.toCharArray();
+	    
+	    System.out.println(actualWord);
+	    System.out.println("This is wordle.\nThe word based game.\nX = None, Y = Yellow, G = Green\nTotal number of words: " + arrayForWords.length + "\nPlease type your first guess:");
+	    
+	    Scanner console = new Scanner(System.in);
+	    String userInput = console.nextLine();	    
+	    char[] arrayForUser = userInput.toCharArray();
+	    
+	    
+	    boolean really = false;
+	    int count = 0; 
+	    int forCount = -1; 
+	    while (!really) {
+	    	count++;
+	    	forCount = -1;
+	    	if (count < 6) {
+	    		if (userInput.equals(actualWord)) {
+		    		System.out.println("Zamnnnn you got it in " + count + " tries/try.");
+		    		really = true; 
+		    	}
+		    	else {
+		    		for (int i = 0; i < 5; i++) {
+		    			forCount++; 
+		    			if (arrayForUser[forCount] == arrayForChars[forCount]) {
+		    				System.out.print("G");
+		    			}
+		    			else {
+		    				if (Arrays.asList(arrayForChars).contains(arrayForUser[forCount])) {
+			    				System.out.println("Y");
+			    			}
+			    			else {
+			    				System.out.print("X"); 
+			    			}
+		    			}
+		    			
+		    			
+		    		}
+		    		System.out.println("\nPlease type your next guess:");
+		    		userInput = console.nextLine(); 
+		    		arrayForUser = userInput.toCharArray();
+		    	}
+	    		
+	    		
+	    		
+	    	}
+	    	else {
+	    		System.out.println("Too bad so sad,\nThe word was: " + actualWord);
+	    		really = true; 
+	    	}
+	    	
+	    }
+	    
+		
+		
+		
 
+	}
 
-create the the list to store the words from the file (5letterwords.txt) 
-make a reader to read the words in the file 
-
-store words in file 
-
-convert the arraylist into a normal array 
-
-choose a random word from the array list
-
-
-
-tell the user about the application (Wordle)
-tell user current number of words in array 
-
-repeat 5 times
-  ask user for input
-
-  get user input (5 letter word) 
-  check if user did put a 5 letter word 
-
-
-  compare if the letters of the user input word is equal to the word that-
-  was chosen
-
-  display which color each one is based on (X - no, Y - yellow, G - green) 
-  
-  if all are equal
-  print poggers
-  
-stipulations for comparing chars 
-- if exact same
-- if letter is in word
-- if letter is in right place
-- if letter is not in word
-
-
-
+}
 
 
