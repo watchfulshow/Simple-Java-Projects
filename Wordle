@@ -1,86 +1,70 @@
+package gui_rock_paper_scissors;
+
 import java.util.*; 
 import java.io.*; 
 public class Wordle_iterate {
-	
+	public static final int WORDLENGTH = 5;
 	public static void main(String[] args) throws IOException {
-		
-		List<String> listofWords = new ArrayList<String>(); 
-		// list to add words
-		BufferedReader reader = new BufferedReader(new FileReader("F:\\UT Austin Junior Year\\Java-Random\\gui_rock_paper_scissors\\src\\5letterwords.txt"));
-		// Read/load data from file
+		List<String> listOfWords = new ArrayList<String>(); 
+		BufferedReader reader = new BufferedReader(new FileReader(
+				"C:\\Users\\syhsy\\Downloads\\newFile.txt"));
 		String readLine = reader.readLine(); 
-		// will read entire line as string
 		while (readLine != null) {
-			listofWords.add(readLine); 
+			listOfWords.add(readLine); 
 			readLine = reader.readLine(); 
 		}
-		// checks for end of file and adds to arraylist
 		reader.close(); 
-		// terminate reader
-		String[] arrayForWords = listofWords.toArray(new String[0]);
-		// covert arraylist to array
-		Random random = new Random(); 
-	    int num = random.nextInt(arrayForWords.length);
-	    String actualWord = arrayForWords[num]; 
-	    char[] arrayForChars = actualWord.toCharArray();
-	    
-	    System.out.println(actualWord);
-	    System.out.println("This is wordle.\nThe word based game.\nX = None, Y = Yellow, G = Green\nTotal number of words: " + arrayForWords.length + "\nPlease type your first guess:");
-	    
+		Random random = new Random();
+	    int num = random.nextInt(listOfWords.size()); 	// random int from length of array
+	    String actualWord = listOfWords.get(num);
+	    System.out.println("This is wordle.\n"
+	    		+ "The word based game.\nX = None, Y = Yellow, G = Green\n"
+	    		+ "Total number of words: " + listOfWords.size() + "\n"
+	    				+ "Please type your first guess:");
+	    // start of actual game
 	    Scanner console = new Scanner(System.in);
-	    String userInput = console.nextLine();	    
-	    char[] arrayForUser = userInput.toCharArray();
-	    
-	    
-	    boolean really = false;
-	    int count = 0; 
-	    int forCount = -1; 
-	    while (!really) {
-	    	count++;
-	    	forCount = -1;
-	    	if (count < 6) {
-	    		if (userInput.equals(actualWord)) {
-		    		System.out.println("Zamnnnn you got it in " + count + " tries/try.");
-		    		really = true; 
+	    String userInput = console.nextLine();
+	    boolean gameOver = false;
+	    int tries = 0;									// number of tries thus far
+	    // TODO: check for different length inputs (and other invalid inputs, such as question marks)
+	    // input must be a valid word (in the database), 
+	    while (!gameOver) {
+	    	if (listOfWords.contains(userInput)) {
+	    		tries++;
+	    		if (tries < WORDLENGTH+1) {
+		    		if (userInput.equals(actualWord)) {
+			    		System.out.println("Zamnnnn you got it in " + tries + " tries/try.");
+			    		gameOver = true; 
+			    	}
+			    	else {
+			    		for (int i = 0; i < WORDLENGTH; i++) {
+			    			if (userInput.charAt(i) == actualWord.charAt(i))
+			    				System.out.print("G");
+			    			else {
+			    				if (actualWord.contains(String.valueOf(userInput.charAt(i))))
+				    				System.out.print("Y");
+				    			else
+				    				System.out.print("X"); 
+			    			}
+			    		}
+			    		System.out.println("\nPlease type your next guess:");
+			    		userInput = console.nextLine(); 
+			    	}
 		    	}
 		    	else {
-		    		for (int i = 0; i < 5; i++) {
-		    			forCount++; 
-		    			if (arrayForUser[forCount] == arrayForChars[forCount]) {
-		    				System.out.print("G");
-		    			}
-		    			else {
-		    				if (Arrays.asList(arrayForChars).contains(arrayForUser[forCount])) {
-			    				System.out.println("Y");
-			    			}
-			    			else {
-			    				System.out.print("X"); 
-			    			}
-		    			}
-		    			
-		    			
-		    		}
-		    		System.out.println("\nPlease type your next guess:");
-		    		userInput = console.nextLine(); 
-		    		arrayForUser = userInput.toCharArray();
+		    		System.out.println("Too bad so sad,\nThe word was: " + actualWord);
+		    		gameOver = true; 
 		    	}
-	    		
-	    		
-	    		
 	    	}
 	    	else {
-	    		System.out.println("Too bad so sad,\nThe word was: " + actualWord);
-	    		really = true; 
+	    		System.out.println("You bitchass fucker, type a real word mate: ");
+	    		userInput = console.nextLine(); 
 	    	}
 	    	
 	    }
-	    
-		
-		
-		
-
+	    console.close();
 	}
-
 }
+
 
 
